@@ -1,0 +1,16 @@
+.action-button {
+  border: none;
+  border-radius: 5px;
+  background-color: rgb(40, 100, 250);
+  color: white;
+  padding: 5px 10px;
+}
+
+.action-button:hover {
+  opacity: 0.9;
+}
+
+.add-task-button {
+  width: 100%;
+  margin-top: 15px;
+}

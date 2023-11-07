@@ -1,0 +1,10 @@
+.task-item {
+  display: flex;
+  justify-content: space-between;
+}
+
+.task-item__buttons {
+  display: grid;
+  grid-template-columns: repeat(2, max-content);
+  column-gap: 5px;
+}

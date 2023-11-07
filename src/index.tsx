@@ -1,7 +1,14 @@
 import React from 'react';
-import { createRoot } from 'react-dom/client';
+import ReactDOM from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom';
+
+import App from 'app/App/App';
 
 const container = document.getElementById('root');
-const root = createRoot(container as HTMLElement);
+const root = ReactDOM.createRoot(container as HTMLElement);
 
-root.render(<h1>todo app</h1>);
+root.render(
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>
+);
