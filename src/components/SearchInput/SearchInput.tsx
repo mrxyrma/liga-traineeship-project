@@ -12,7 +12,7 @@ export function SearchInput({ onChange, value, onReset }: SearchInputProps) {
 
   return (
     <div className="search-panel">
-      <input className="form-control search-input" placeholder="search" onChange={onSearchInputChange} value={value} />
+      <input className="form-control search-input" placeholder="Search" onChange={onSearchInputChange} value={value} />
       <button className="close" onClick={onResetBtnClick}>
         <i className="fa fa-close"></i>
       </button>
