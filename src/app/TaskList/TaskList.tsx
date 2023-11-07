@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { PageContainer, SearchInput, Loader, ActionButton } from '../../components';
@@ -9,11 +10,7 @@ import './TaskList.css';
 
 function Tasks() {
   const [search, setSearch] = useState('');
-  const tempArrWithTasks = [
-    { info: 'Сверстать страницу', isImportant: false, isCompleted: false, id: 1 },
-    { info: 'Сверстать другую страницу', isImportant: false, isCompleted: false, id: 2 },
-    { info: 'Добавить стили', isImportant: true, isCompleted: false, id: 3 },
-  ];
+  const tempArrWithTasksTyped = useSelector((state) => state.todos.todos);
 
   const content = tempArrWithTasks.map((task) => {
     return <TaskItem key={task.id} task={task} />;
