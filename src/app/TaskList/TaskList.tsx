@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { PageContainer, SearchInput, Loader, ActionButton } from '../../components';
@@ -10,7 +10,18 @@ import './TaskList.css';
 
 const TaskList: React.FC = () => {
   const [search, setSearch] = useState('');
-  const tempArrWithTasksTyped = useAppSelector((state) => state.tasks.tasks);
+  const data = useAppSelector((state) => state.tasks.tasks);
+  let tempArrWithTasksTyped = data;
+
+  const onSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearch(e.target.value);
+    const foundTasks = data.filter((task) => task.info.toLowerCase().includes(e.target.value.toLowerCase()));
+  };
+
+  const onReset = () => {
+    setSearch('');
+    tempArrWithTasksTyped = data;
+  };
 
   const content = tempArrWithTasksTyped.map((task) => {
     return <TaskItem key={task.id} task={task} />;
@@ -22,18 +33,17 @@ const TaskList: React.FC = () => {
         <h1>TODO LIST</h1>
       </header>
       <nav className="navbar">
-        <SearchInput onChange={setSearch} value={search} onReset={() => setSearch('')} />
+        <SearchInput onChange={onSearch} value={search} onReset={onReset} />
         <div className="filter-buttons">
           <FilterButton text="All" isActive={true} />
-          <FilterButton text="Active" isActive={true} />
-          <FilterButton text="Done" isActive={true} />
-          <FilterButton text="Important" isActive={true} />
+          <FilterButton text="Active" isActive={false} />
+          <FilterButton text="Done" isActive={false} />
+          <FilterButton text="Important" isActive={false} />
         </div>
-        <ActionButton text="Find" />
       </nav>
       <main>
         <Loader isLoading={false}>
-          <div className="task-list">{content}</div>
+          <div className="task-list">{content.length ? content : 'Not found'}</div>
         </Loader>
       </main>
       <Link to={'task_form'}>

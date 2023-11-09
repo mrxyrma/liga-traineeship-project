@@ -21,9 +21,9 @@ const TaskItem: React.FC<TaskProps> = ({ task }) => {
       <Checkbox label={task.info} containerClassName={containerClassName} />
       <div className="task-item__buttons">
         <Link to={`task_form/${task.id}`}>
-          <ActionButton text="Edit" />
+          <ActionButton text="Edit" className="edit-button" />
         </Link>
-        <ActionButton text="Delete" onClick={onDeleteTask} />
+        <ActionButton text="Delete" onClick={onDeleteTask} className="delete-button" />
       </div>
     </div>
   );

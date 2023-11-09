@@ -1,6 +1,8 @@
 .navbar {
   padding: 0;
-  height: 35px;
+  display: grid;
+  grid-template-columns: 1fr max-content;
+  column-gap: 15px;
 }
 
 .filter-buttons {

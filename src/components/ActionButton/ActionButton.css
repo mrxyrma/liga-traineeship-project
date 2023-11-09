@@ -14,3 +14,11 @@
   width: 100%;
   margin-top: 15px;
 }
+
+.edit-button {
+  background-color: rgb(255, 184, 20);
+}
+
+.delete-button {
+  background-color: #f94343;
+}
