@@ -1,13 +1,25 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
 import { Checkbox, ActionButton, PageContainer, TextField } from '../../components';
+import TaskFormProps from './TaskForm.types';
+import { useAppDispatch } from 'src/hooks/hooks';
+import { addTask } from 'src/store/tasksSlice';
 
-import { addTodo } from 'src/store/todoSlice';
+const TaskForm: React.FC<TaskFormProps> = () => {
+  const dispatch = useAppDispatch();
+  const [text, setText] = useState('');
+  const [importance, setImportance] = useState(false);
 
-function TaskForm() {
-  const [info, setInfo] = useState('');
-  const dispatch = useDispatch();
-  const addTask = () => dispatch(addTodo(info));
+  const addNewTask = () => {
+    const pureText = text.trim();
+    if (pureText.length) {
+      dispatch(addTask({ pureText, importance }));
+      setText('');
+    }
+  };
+
+  const toggleImportance = () => {
+    setImportance(!importance);
+  };
 
   return (
     <PageContainer>
@@ -15,13 +27,13 @@ function TaskForm() {
       <TextField
         label="Creating a task"
         placeholder="What need to do?"
-        value={info}
-        onChange={(e) => setInfo(e.target.value)}
+        value={text}
+        onChange={(e) => setText(e.target.value)}
       />
-      <Checkbox label="Important" />
-      <ActionButton text="Create a task" className="add-task-button" onClick={addTask} />
+      <Checkbox label="Important" onChange={toggleImportance} />
+      <ActionButton text="Create a task" className="add-task-button" onClick={addNewTask} />
     </PageContainer>
   );
-}
+};
 
 export default TaskForm;

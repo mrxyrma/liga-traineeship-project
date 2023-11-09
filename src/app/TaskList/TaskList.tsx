@@ -1,18 +1,18 @@
-import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { PageContainer, SearchInput, Loader, ActionButton } from '../../components';
 import FilterButton from './components/FilterButton/FilterButton';
 import TaskItem from './components/TaskItem/TaskItem';
+import { useAppSelector } from 'src/hooks/hooks';
 
 import './TaskList.css';
 
-function Tasks() {
+const TaskList: React.FC = () => {
   const [search, setSearch] = useState('');
-  const tempArrWithTasksTyped = useSelector((state) => state.todos.todos);
+  const tempArrWithTasksTyped = useAppSelector((state) => state.tasks.tasks);
 
-  const content = tempArrWithTasks.map((task) => {
+  const content = tempArrWithTasksTyped.map((task) => {
     return <TaskItem key={task.id} task={task} />;
   });
 
@@ -41,6 +41,6 @@ function Tasks() {
       </Link>
     </PageContainer>
   );
-}
+};
 
-export default Tasks;
+export default TaskList;

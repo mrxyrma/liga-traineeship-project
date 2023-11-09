@@ -1,8 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
-import todoReducer from './todoSlice';
+import tasksReducer from './tasksSlice';
 
-export default configureStore({
+const store = configureStore({
   reducer: {
-    todos: todoReducer,
+    tasks: tasksReducer,
   },
 });
+
+export default store;
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
