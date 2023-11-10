@@ -1,11 +1,23 @@
-import React, { MouseEvent } from 'react';
-import './SearchInput.css';
-import { SearchInputProps } from './SearchInput.types';
+import { MouseEvent, ChangeEvent, useState } from 'react';
 
-export function SearchInput({ onChange, value, onReset }: SearchInputProps) {
-  const onResetBtnClick = (evt: MouseEvent<HTMLButtonElement>) => {
-    evt.preventDefault();
-    if (onReset) onReset();
+import { useAppDispatch } from 'src/hooks/hooks';
+import { searchTask } from 'src/store/tasksSlice';
+
+import './SearchInput.css';
+
+export function SearchInput() {
+  const [value, setValue] = useState('');
+
+  const dispatch = useAppDispatch();
+
+  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setValue(e.target.value);
+    dispatch(searchTask(e.target.value));
+  };
+
+  const onResetBtnClick = (e: MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    setValue('');
   };
 
   return (

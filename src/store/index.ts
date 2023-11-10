@@ -1,12 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
+import logger from 'redux-logger';
 import tasksReducer from './tasksSlice';
-import searchReducer from './searchSlice';
 
 const store = configureStore({
   reducer: {
     tasks: tasksReducer,
-    searching: searchReducer,
   },
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });
 
 export default store;
