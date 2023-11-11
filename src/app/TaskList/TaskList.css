@@ -1,19 +1,9 @@
-.navbar {
-  padding: 0;
-  display: grid;
-  grid-template-columns: 1fr max-content;
-  column-gap: 15px;
-}
-
-.filter-buttons {
-  border: 0.5px solid rgb(60, 60, 60);
-  border-radius: 5px;
-  height: 100%;
-}
-
 .task-list {
   display: grid;
   grid-template-columns: 1fr;
+  text-align: center;
   row-gap: 10px;
-  padding: 15px 0 0 10px;
+  padding: 15px 10px 0;
+  overflow: scroll;
+  max-height: fill-available;
 }

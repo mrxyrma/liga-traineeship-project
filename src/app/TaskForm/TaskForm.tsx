@@ -10,11 +10,10 @@ const TaskForm: React.FC<TaskFormProps> = () => {
   const [importance, setImportance] = useState(false);
 
   const addNewTask = () => {
-    const pureText = text.trim();
-    if (pureText.length) {
-      dispatch(addTask({ pureText, importance }));
-      setText('');
-    }
+    const name = 'd',
+      info = 'd';
+    dispatch(addTask({ name, info, importance }));
+    setText('');
   };
 
   const toggleImportance = () => {

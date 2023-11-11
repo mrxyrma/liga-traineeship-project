@@ -1,5 +1,6 @@
 export interface INewTask {
-  pureText: string;
+  name: string;
+  info: string;
   importance: boolean;
 }
 

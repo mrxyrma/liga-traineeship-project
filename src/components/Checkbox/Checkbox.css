@@ -9,12 +9,3 @@
   margin: 0 10px 0 0 !important;
   min-width: 1em;
 }
-
-.task-list .form-check:has(.form-check-input:checked) {
-  text-decoration: line-through;
-  font-weight: unset;
-}
-
-.important-task {
-  font-weight: 800;
-}
