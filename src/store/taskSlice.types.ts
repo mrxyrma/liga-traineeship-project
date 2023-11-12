@@ -1,10 +1,7 @@
 export interface INewTask {
+  id?: number;
   name: string;
   info: string;
-  importance: boolean;
-}
-
-export interface IEditTask {
-  id: number;
-  newInfo: string;
+  isImportant: boolean;
+  isCompleted: boolean;
 }

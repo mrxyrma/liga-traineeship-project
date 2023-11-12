@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { INewTask, IEditTask } from './taskSlice.types';
+import { INewTask } from './taskSlice.types';
 import { TasksState } from 'types/taskType';
 
 const initialState: TasksState = {
@@ -18,15 +18,18 @@ const tasksSlice = createSlice({
       state.tasks.push({
         name: action.payload.name,
         info: action.payload.info,
-        isImportant: action.payload.importance,
-        isCompleted: false,
+        isImportant: action.payload.isImportant,
+        isCompleted: action.payload.isCompleted,
         id: state.tasks.length + 1,
       });
     },
-    editTask(state, action: PayloadAction<IEditTask>) {
+    editTask(state, action: PayloadAction<INewTask>) {
       state.tasks = state.tasks.map((task) => {
         if (task.id === action.payload.id) {
-          task.info = action.payload.newInfo;
+          task.name = action.payload.name;
+          task.info = action.payload.info;
+          task.isImportant = action.payload.isImportant;
+          task.isCompleted = action.payload.isCompleted;
         }
         return task;
       });
