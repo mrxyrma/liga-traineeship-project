@@ -4,9 +4,3 @@
   grid-template-columns: 1fr max-content;
   column-gap: 15px;
 }
-
-.filter-buttons {
-  border: 0.5px solid rgb(60, 60, 60);
-  border-radius: 5px;
-  height: 100%;
-}

@@ -37,3 +37,7 @@
   text-decoration: line-through;
   font-weight: normal;
 }
+
+.task-item_done.task-item_important {
+  background-color: rgba(255, 234, 0, 0.6);
+}

@@ -26,17 +26,17 @@ const TaskItem: React.FC<TaskProps> = ({ task }) => {
 
   return (
     <div className="task-item">
-      <Checkbox onChange={onToggleDone} />
+      <Checkbox onChange={onToggleDone} checked={task.isCompleted} />
       <div className="task-item__text-data">
         <h2
-          className={`task-item__name ${task.isCompleted ? 'task-item_done' : null} ${
-            task.isImportant && !task.isCompleted ? 'task-item_important' : null
+          className={`task-item__name ${task.isCompleted ? 'task-item_done' : ''} ${
+            task.isImportant ? 'task-item_important' : ''
           }`}>
           {task.name}
         </h2>
         <p
-          className={`task-item__info ${task.isCompleted ? 'task-item_done' : null} ${
-            task.isImportant && !task.isCompleted ? 'task-item_important' : null
+          className={`task-item__info ${task.isCompleted ? 'task-item_done' : ''} ${
+            task.isImportant ? 'task-item_important' : ''
           }`}>
           {task.info}
         </p>

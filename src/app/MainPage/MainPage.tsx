@@ -2,23 +2,28 @@ import { useEffect, useState } from 'react';
 
 import { Link } from 'react-router-dom';
 import { SearchInput, Loader, ActionButton } from '../../components';
-import FilterButton from './components/FilterButton/FilterButton';
 import TaskList from 'app/TaskList/TaskList';
 
+import { setVisibleTasks, updateTasks } from 'src/store/visibleTasksSlice';
+
 import './MainPage.css';
-import { useAppSelector } from 'src/hooks/hooks';
+import { useAppDispatch, useAppSelector } from 'src/hooks/hooks';
+import FilterButtons from 'app/FilterButtons/FilterButtons';
 
 const MainPage: React.FC = () => {
   const tasks = useAppSelector((state) => state.tasks.tasks);
-  const [visibleTasks, setVisibleTasks] = useState(tasks);
+  const visibleTasks = useAppSelector((state) => state.visibleTasks.visibleTasks);
+
+  const dispatch = useAppDispatch();
+
   const [searchValue, setSearchValue] = useState('');
 
   useEffect(() => {
-    const update = visibleTasks.map((task) => {
-      const updateTask = tasks.filter((item) => item.id === task.id);
-      return updateTask[0];
-    });
-    setVisibleTasks(update);
+    dispatch(setVisibleTasks(tasks));
+  }, []);
+
+  useEffect(() => {
+    dispatch(updateTasks(tasks));
   }, [tasks]);
 
   const onTaskSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -31,12 +36,12 @@ const MainPage: React.FC = () => {
         return task;
       }
     });
-    setVisibleTasks(foundTasks);
+    dispatch(setVisibleTasks(foundTasks));
   };
 
   const onSearchReset = () => {
     setSearchValue('');
-    setVisibleTasks(tasks);
+    dispatch(setVisibleTasks(tasks));
   };
 
   return (
@@ -46,12 +51,7 @@ const MainPage: React.FC = () => {
       </header>
       <nav className="navbar">
         <SearchInput onChange={onTaskSearch} value={searchValue} onReset={onSearchReset} />
-        <div className="filter-buttons">
-          <FilterButton text="All" isActive={true} />
-          <FilterButton text="Active" isActive={false} />
-          <FilterButton text="Done" isActive={false} />
-          <FilterButton text="Important" isActive={false} />
-        </div>
+        <FilterButtons />
       </nav>
       <Loader isLoading={false}>
         <TaskList tasks={visibleTasks} />

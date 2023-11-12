@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 import logger from 'redux-logger';
 import tasksReducer from './tasksSlice';
+import visibleTasksReducer from './visibleTasksSlice';
 
 const store = configureStore({
   reducer: {
     tasks: tasksReducer,
+    visibleTasks: visibleTasksReducer,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });
