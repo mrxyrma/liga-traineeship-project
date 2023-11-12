@@ -1,0 +1,6 @@
+.navbar {
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr max-content;
+  column-gap: 15px;
+}

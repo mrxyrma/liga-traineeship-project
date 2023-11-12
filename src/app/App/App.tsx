@@ -1,17 +1,18 @@
 import { Routes, Route } from 'react-router-dom';
-import TaskList from 'app/TaskList/TaskList';
+import { PageContainer } from 'components/PageContainer';
 import TaskForm from 'app/TaskForm/TaskForm';
+import MainPage from 'app/MainPage/MainPage';
 
 function App() {
   return (
     <>
-      <main className="container">
+      <PageContainer>
         <Routes>
           <Route path="/task_form/:id" element={<TaskForm />} />
           <Route path="/task_form" element={<TaskForm />} />
-          <Route path="/" element={<TaskList />} />
+          <Route path="/" element={<MainPage />} />
         </Routes>
-      </main>
+      </PageContainer>
     </>
   );
 }

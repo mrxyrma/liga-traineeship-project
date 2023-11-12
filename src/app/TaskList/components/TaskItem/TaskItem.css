@@ -3,8 +3,41 @@
   justify-content: space-between;
 }
 
+.task-item__text-data {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  width: 100%;
+  margin-right: 10px;
+}
+
+.task-item__name {
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.task-item__info {
+  margin: 0;
+}
+
 .task-item__buttons {
   display: grid;
-  grid-template-columns: repeat(2, max-content);
+  grid-template-columns: repeat(3, max-content);
   column-gap: 5px;
+  align-items: center;
+}
+
+.task-item_important {
+  font-weight: 800;
+  background-color: rgb(255, 234, 0);
+}
+
+.task-item_done {
+  text-decoration: line-through;
+  font-weight: normal;
+}
+
+.task-item_done.task-item_important {
+  background-color: rgba(255, 234, 0, 0.6);
 }
