@@ -2,12 +2,12 @@ import { configureStore } from '@reduxjs/toolkit';
 import logger from 'redux-logger';
 import thunk from 'redux-thunk';
 import tasksReducer from './tasksSlice';
-import visibleTasksReducer from './visibleTasksSlice';
+import searchReducer from './searchSlice';
 
 const store = configureStore({
   reducer: {
     tasks: tasksReducer,
-    visibleTasks: visibleTasksReducer,
+    search: searchReducer,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(thunk).concat(logger),
 });

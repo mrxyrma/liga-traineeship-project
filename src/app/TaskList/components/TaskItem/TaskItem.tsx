@@ -11,7 +11,7 @@ import './TaskItem.css';
 
 const TaskItem: React.FC<TaskProps> = ({ task }) => {
   const dispatch = useAppDispatch();
-
+  console.log('re');
   const onToggleDone = () => {
     dispatch(toggleCompleteTask(task.id));
   };

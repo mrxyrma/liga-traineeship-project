@@ -1,13 +1,19 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { INewTask } from './taskSlice.types';
-import { TasksState } from 'types/taskType';
+import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
+import { INewTask, ITaskSliceState } from './taskSlice.types';
+import { Task } from 'types/taskType';
 
-const initialState: TasksState = {
-  tasks: [
-    { name: 'Имя', info: 'Сверстать страницу', isImportant: false, isCompleted: false, id: 1 },
-    { name: 'Имя', info: 'Сверстать другую страницу', isImportant: false, isCompleted: false, id: 2 },
-    { name: 'Имя', info: 'Добавить стили', isImportant: true, isCompleted: false, id: 3 },
-  ],
+export const fetchTasks: any = createAsyncThunk('tasks/fetchTasks', async function () {
+  const response = await fetch('http://37.220.80.108/tasks');
+  const data = await response.json();
+  return data;
+});
+
+const initialState: ITaskSliceState = {
+  tasks: [],
+  visibleTasks: [],
+  initialVisibleTasks: [],
+  loading: false,
+  error: null,
 };
 
 const tasksSlice = createSlice({
@@ -53,8 +59,59 @@ const tasksSlice = createSlice({
         return task;
       });
     },
+    updateTasks(state, action: PayloadAction<Task[]>) {
+      const update: Task[] = [];
+      state.visibleTasks.forEach((visibleTask) => {
+        const updateTask = action.payload.find((item) => {
+          return item.id === visibleTask.id;
+        });
+        if (typeof updateTask !== 'undefined') update.push(updateTask);
+      });
+      state.visibleTasks = update;
+    },
+    setVisibleTasks(state, action: PayloadAction<Task[]>) {
+      state.visibleTasks = action.payload;
+    },
+    setInitialVisibleTasks(state, action: PayloadAction<Task[]>) {
+      state.initialVisibleTasks = action.payload;
+    },
+  },
+  extraReducers: {
+    [fetchTasks.pending]: (state) => {
+      state.loading = true;
+      state.error = null;
+    },
+    [fetchTasks.fulfilled]: (state, action: PayloadAction<Task[]>) => {
+      const validTasks: Task[] = [];
+      action.payload.forEach((item) => {
+        if (
+          typeof item.id === 'number' &&
+          typeof item.name === 'string' &&
+          typeof item.info === 'string' &&
+          typeof item.isCompleted === 'boolean' &&
+          typeof item.isImportant === 'boolean'
+        ) {
+          validTasks.push(item);
+        }
+      });
+      state.loading = false;
+      state.tasks = validTasks;
+      state.visibleTasks = validTasks;
+    },
+    [fetchTasks.rejected]: (state, action) => {
+      console.log('rej');
+    },
   },
 });
 
-export const { addTask, editTask, deleteTask, toggleImportanceTask, toggleCompleteTask } = tasksSlice.actions;
+export const {
+  addTask,
+  editTask,
+  deleteTask,
+  toggleImportanceTask,
+  toggleCompleteTask,
+  updateTasks,
+  setVisibleTasks,
+  setInitialVisibleTasks,
+} = tasksSlice.actions;
 export default tasksSlice.reducer;

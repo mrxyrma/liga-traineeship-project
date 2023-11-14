@@ -10,10 +10,6 @@ export type TaskProps = {
   task: Task;
 };
 
-export type TasksState = {
-  tasks: Task[];
-};
-
 export type visibleTasks = {
   visibleTasks: Task[];
 };

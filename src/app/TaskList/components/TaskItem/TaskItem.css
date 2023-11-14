@@ -15,10 +15,12 @@
 .task-item__name {
   font-size: 1.1rem;
   margin: 0;
+  text-align: start;
 }
 
 .task-item__info {
   margin: 0;
+  text-align: start;
 }
 
 .task-item__buttons {
