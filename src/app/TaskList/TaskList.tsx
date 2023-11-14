@@ -12,6 +12,7 @@ const TaskList: React.FC = () => {
   const visibleTasks = useAppSelector((state) => state.tasks.visibleTasks);
   const dispatch = useAppDispatch();
   const loading = useAppSelector((state) => state.tasks.loading);
+  const error = useAppSelector((state) => state.tasks.error);
 
   useEffect(() => {
     dispatch(updateTasks(tasks));
@@ -24,6 +25,7 @@ const TaskList: React.FC = () => {
   return (
     <main className="task-list">
       <Loader isLoading={loading}>{content.length && !loading ? content : 'Not found'}</Loader>
+      {error && <h2>{error}</h2>}
     </main>
   );
 };
