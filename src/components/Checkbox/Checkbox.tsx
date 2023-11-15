@@ -1,6 +1,6 @@
-import { CheckboxProps } from './Checkbox.types';
+import { CheckboxProps } from 'src/components/Checkbox/Checkbox.types';
 
-import './Checkbox.css';
+import 'src/components/Checkbox/Checkbox.css';
 
 export function Checkbox({ label, checked, onChange, disabled, containerClassName = '' }: CheckboxProps) {
   return (

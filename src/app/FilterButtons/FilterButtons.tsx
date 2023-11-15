@@ -1,10 +1,12 @@
-import FilterButton from './components/FilterButton/FilterButton';
 import { useAppDispatch, useAppSelector } from 'src/hooks/hooks';
 import { setVisibleTasks, setInitialVisibleTasks } from 'src/store/tasksSlice';
-import './FilterButtons.css';
 import { setSearchValue } from 'src/store/searchSlice';
 
-const FilterButtons = () => {
+import FilterButton from 'src/app/FilterButtons/components/FilterButton/FilterButton';
+
+import 'src/app/FilterButtons/FilterButtons.css';
+
+const FilterButtons: React.FC = () => {
   const allTasks = useAppSelector((state) => state.tasks.tasks);
   const dispatch = useAppDispatch();
 

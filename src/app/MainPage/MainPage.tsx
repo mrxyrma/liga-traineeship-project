@@ -8,9 +8,9 @@ import FilterButtons from 'app/FilterButtons/FilterButtons';
 import { fetchTasks } from 'src/store/tasksSlice';
 import { useAppDispatch } from 'src/hooks/hooks';
 
-import './MainPage.css';
+import 'src/app/MainPage/MainPage.css';
 
-const MainPage: React.FC = () => {
+const MainPage: React.FC<JSX.Element> = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {

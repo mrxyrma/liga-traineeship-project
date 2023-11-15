@@ -1,11 +1,10 @@
 import { memo, useEffect } from 'react';
-
-import { Loader } from '../../components';
-import TaskItem from './components/TaskItem/TaskItem';
+import { Loader } from 'src/components';
+import TaskItem from 'src/app/TaskList/components/TaskItem/TaskItem';
 import { useAppSelector, useAppDispatch } from 'src/hooks/hooks';
-
-import './TaskList.css';
 import { updateTasks } from 'src/store/tasksSlice';
+
+import 'src/app/TaskList/TaskList.css';
 
 const TaskList: React.FC = () => {
   const tasks = useAppSelector((state) => state.tasks.tasks);
