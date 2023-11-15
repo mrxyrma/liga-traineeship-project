@@ -75,6 +75,15 @@ const tasksSlice = createSlice({
     setInitialVisibleTasks(state, action: PayloadAction<Task[]>) {
       state.initialVisibleTasks = action.payload;
     },
+    setLoading(state, action: PayloadAction<boolean>) {
+      state.loading = action.payload;
+    },
+    setError(state, action: PayloadAction<string>) {
+      state.error = action.payload;
+    },
+    setTasks(state, action: PayloadAction<Task[]>) {
+      state.tasks = action.payload;
+    },
   },
   extraReducers: {
     [fetchTasks.pending]: (state) => {
@@ -113,5 +122,8 @@ export const {
   updateTasks,
   setVisibleTasks,
   setInitialVisibleTasks,
+  setTasks,
+  setLoading,
+  setError,
 } = tasksSlice.actions;
 export default tasksSlice.reducer;
