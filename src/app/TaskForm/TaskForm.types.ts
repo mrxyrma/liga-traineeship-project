@@ -1,3 +1,3 @@
-export default interface TaskFormProps {
+export default interface ITaskFormProps {
   info?: string;
 }

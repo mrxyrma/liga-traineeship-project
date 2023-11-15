@@ -1,9 +1,9 @@
 import { MouseEvent } from 'react';
-import { FilterButtonProps } from './FilterButton.types';
+import { IFilterButtonProps } from 'src/app/FilterButtons/components/FilterButton/FilterButton.types';
 
 import './FilterButton.css';
 
-export default function FilterButton({ text, isActive, onClick }: FilterButtonProps) {
+export default function FilterButton({ text, isActive, onClick }: IFilterButtonProps) {
   const activeClass = isActive ? 'filter-button_active' : null;
 
   const toggleClass = (e: MouseEvent<HTMLButtonElement>) => {

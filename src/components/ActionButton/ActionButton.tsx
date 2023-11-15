@@ -1,5 +1,5 @@
 import { ButtonProps } from './ActionButton.types';
-import './ActionButton.css';
+import 'src/components/ActionButton/ActionButton.css';
 
 export function ActionButton({ text, className, onClick }: ButtonProps) {
   return (

@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { Checkbox, ActionButton, PageContainer, TextField } from '../../components';
-import TaskFormProps from './TaskForm.types';
+import ITaskFormProps from 'src/app/TaskForm/TaskForm.types';
+import { Checkbox, ActionButton, PageContainer, TextField } from 'src/components';
 import { useAppDispatch, useAppSelector } from 'src/hooks/hooks';
 import { addTask, editTask } from 'src/store/tasksSlice';
 
-const TaskForm: React.FC<TaskFormProps> = () => {
+const TaskForm: React.FC<ITaskFormProps> = () => {
   const { id } = useParams();
   const dispatch = useAppDispatch();
   const [name, setName] = useState('');

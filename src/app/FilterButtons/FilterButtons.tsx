@@ -1,35 +1,46 @@
-import FilterButton from './components/FilterButton/FilterButton';
 import { useAppDispatch, useAppSelector } from 'src/hooks/hooks';
-import { setVisibleTasks } from 'src/store/visibleTasksSlice';
-import './FilterButtons.css';
+import { setVisibleTasks, setInitialVisibleTasks } from 'src/store/tasksSlice';
+import { setSearchValue } from 'src/store/searchSlice';
 
-const FilterButtons = () => {
+import FilterButton from 'src/app/FilterButtons/components/FilterButton/FilterButton';
+
+import 'src/app/FilterButtons/FilterButtons.css';
+
+const FilterButtons: React.FC = () => {
   const allTasks = useAppSelector((state) => state.tasks.tasks);
   const dispatch = useAppDispatch();
 
   const rebootFilter = () => {
+    dispatch(setSearchValue(''));
     dispatch(setVisibleTasks(allTasks));
+    dispatch(setInitialVisibleTasks(allTasks));
   };
 
   const setActiveFilter = () => {
     const active = allTasks.filter((task) => {
       return !task.isCompleted;
     });
+    dispatch(setSearchValue(''));
     dispatch(setVisibleTasks(active));
+    dispatch(setInitialVisibleTasks(active));
   };
 
   const setDoneFilter = () => {
     const done = allTasks.filter((task) => {
       return task.isCompleted;
     });
+    dispatch(setSearchValue(''));
     dispatch(setVisibleTasks(done));
+    dispatch(setInitialVisibleTasks(done));
   };
 
   const setImportantFilter = () => {
     const important = allTasks.filter((task) => {
       return task.isImportant;
     });
+    dispatch(setSearchValue(''));
     dispatch(setVisibleTasks(important));
+    dispatch(setInitialVisibleTasks(important));
   };
 
   return (
